@@ -1,9 +1,7 @@
 # Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-
+*/node_modules/
+*/node_module
+*/package-lock.json
 # Other files and folders
 .settings/
 
