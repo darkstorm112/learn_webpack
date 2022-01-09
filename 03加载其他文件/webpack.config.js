@@ -46,14 +46,30 @@ module.exports = {
         ]
       },
       // 不建议使用file-loader
+      // {
+      //   test:/\.(png|jpg|jpeg|svg|gif)$/,
+      //   use:[
+      //     {
+      //         loader:"file-loader",
+      //         options:{
+      //           name:'img/[name].[hash:6].[ext]'
+      //         }
+      //     }
+      //   ],
+      //   // 用不到// type: 'javascript/auto'
+      // }
       {
         test:/\.(png|jpg|jpeg|svg|gif)$/,
         use:[
           {
-              loader:"file-loader",
-              options:{
-                name:'img/[name].[hash:6].[ext]'
-              }
+            loader:'url-loader',
+            options:{
+              limit: 20*1024,
+              name:'[name].[hash:6].[ext]',
+              // publicPath:'./img',
+              outputPath:'img',
+              // esModule:false
+            },
           }
         ],
         // type: 'javascript/auto'
