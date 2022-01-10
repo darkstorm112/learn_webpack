@@ -1,8 +1,9 @@
 const path = require('path')
+const fs = require('fs')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { resourceUsage } = require('process')
-
+const {DefinePlugin} = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
   mode:"development",  
   entry:'./src/main.js',
@@ -73,9 +74,34 @@ module.exports = {
   },
   plugins:[
     new CleanWebpackPlugin(),
+    new DefinePlugin({
+      BASE_URL:"'./'"
+    }),
     new HtmlWebpackPlugin({
       template:'./index.html',
       title:'加载其他文件'
+    }),
+    new CopyPlugin({
+      patterns:[
+        {
+          from:'public',
+          // filter:async(source)=>{
+          //   const data = await fs.promises.readFile(source)
+          //   let content = data.toString()
+          //   content = content.replace('good','test')
+          //   // await fs.promises.writeFile(source,content)
+          //   return true
+          // },
+          transform:{
+            transformer(context, path) {
+              console.log(context)
+              return context.toString().replace('good','test')
+            }
+          },
+          to:'pub'
+        }
+      ]
+      
     })
   ]
 }
