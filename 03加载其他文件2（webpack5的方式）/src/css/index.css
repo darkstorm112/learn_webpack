@@ -1,0 +1,16 @@
+
+@import "./test.css";
+@import "./font/iconfont.css";
+
+.demo {
+  color: red;
+}
+
+.bg-image {
+  display: inline-block;
+  background-image: url('../img/nhlt.jpg');
+  background-size: contain;
+  width: 300px;
+  height: 300px;
+}
+
